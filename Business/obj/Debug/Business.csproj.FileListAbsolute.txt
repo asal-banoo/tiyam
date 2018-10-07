@@ -1,0 +1,9 @@
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\bin\Debug\Business.dll
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\bin\Debug\Business.pdb
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\bin\Debug\Models.dll
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\bin\Debug\Models.pdb
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\obj\Debug\Business.csprojAssemblyReference.cache
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\obj\Debug\Business.csproj.CopyComplete
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\obj\Debug\Business.dll
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Business\obj\Debug\Business.pdb

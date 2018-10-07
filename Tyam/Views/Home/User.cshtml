@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "User";
+}
+<h2>User</h2>
+@section Scripts{
+    <script src="~/Scripts/jquery-3.3..min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            getUserList();
+        });
+        // Get all Users to display
+        function getUserList() {
+            
+            $.ajax({
+                url: '/api/Users/',
+                type: 'GET',
+                dataType: 'json',
+                success: function (items) {
+                    UserListSuccess(items);
+                },
+                error: function (request, message, error) {
+                    handleException(request, message, error);
+                }
+            });
+        }
+        var category = {
+            ID: 0,
+            Name: "",
+            Password: "",
+            UserName: "",
+            Country: "",
+            City: "",
+            State: "",
+            PostalCode: ""
+        }
+        // Display all Users returned from Web API call
+        function UserListSuccess(Users) {
+            // Iterate over the collection of data
+            $("#UserTable tbody").remove();
+            $.each(Users, function (index, User) {
+                // Add a row to the User table
+                UserAddRow(User);
+            });
+        }
+
+        // Add User row to <table>
+        function UserAddRow(User) {
+            // First check if a <tbody> tag exists, add one if not
+            if ($("#UserTable tbody").length == 0) {
+                $("#UserTable").append("<tbody></tbody>");
+            }
+
+            // Append row to <table>
+            $("#UserTable tbody").append(
+                UserBuildTableRow(User));
+        }
+
+        // Build a <tr> for a row of table data
+        function UserBuildTableRow(User) {
+            var newRow = "<tr>" +
+                "<td>" + User.ID + "</td>" +
+                "<td><input style='whidth:50px;' class='form-control input-username' type='text' value='" + User.UserName + "'/></td>" +
+                "<td><input style='whidth:50px;' class='form-control input-name' type='text' value='" + User.Name + "'/></td>" +
+                "<td><input style='whidth:50px;' class='form-control input-family' type='text' value='" + User.Family + "'/></td>" +
+                "<td><input style='whidth:50px;' class='form-control input-city' type='text' value='" + User.City + "'/></td>" +
+                "<td><input style='whidth:50px;' class='form-control input-state' type='text' value='" + User.State + "'/></td>" +
+                "<td><input style='whidth:50px;' class='form-control input-country' type='text' value='" + User.Country + "'/></td>" +
+                "<td>" +
+                "<button type='button' " +
+                "onclick='UserUpdate(this);' " +
+                "class='btn btn-success' " +
+                "data-id='" + User.ID + "' " +
+                "data-name='" + User.Name + "' " +
+                ">" +
+                "<span class='glyphicon glyphicon-edit'/> تغییر" +
+                "</button> " +
+                " <button type='button' " +
+                "onclick='UserDelete(this);'" +
+                "class='btn btn-danger' " +
+                "data-id='" + User.ID + "'>" +
+                "<span class='glyphicon glyphicon-remove'/>حذف" +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+
+            return newRow;
+        }
+
+        function onAddUser(item) {
+            var options = {};
+            options.url = "/api/Users/";
+            options.type = "POST";
+            var obj = category;
+            obj.UserName = $("#username").val();
+            obj.Name = $("#name").val();
+            obj.Family = $("#family").val();
+            obj.Country = $("#country").val();
+            obj.State = $("#state").val();
+            obj.City = $("#city").val();
+            obj.Password = "";
+            obj.Address = "";
+            obj.PostalCode = "";
+            console.dir(obj);
+            options.data = JSON.stringify(obj);
+            options.contentType = "application/json";
+            options.dataType = "html";
+
+            options.success = function (msg) {
+                getUserList();
+                $("#msg").html(msg);
+            },
+                options.error = function () {
+                    $("#msg").html("Error while calling the Web API!");
+                };
+            $.ajax(options);
+        }
+
+        function UserUpdate(item) {
+            var id = $(item).data("id");
+            var options = {};
+            options.url = "/api/Users/" + id;
+            options.type = "PUT";
+
+            var obj = category;
+            obj.ID = $(item).data("id");
+            obj.UserName = $(".input-username", $(item).parent().parent()).val();
+            obj.Name = $(".input-name", $(item).parent().parent()).val();
+            obj.Family = $(".input-family", $(item).parent().parent()).val();
+            obj.Country = $(".input-country", $(item).parent().parent()).val();
+            obj.City = $(".input-city", $(item).parent().parent()).val();
+            obj.state = $(".input-state", $(item).parent().parent()).val();
+            console.dir(obj);
+            options.data = JSON.stringify(obj);
+            options.contentType = "application/json";
+            options.dataType = "html";
+            options.success = function (msg) {
+                $("#msg").html(msg);
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
+
+        function UserDelete(item) {
+            var id = $(item).data("id");
+            var options = {};
+            options.url = "/api/Users/"
+                + id;
+            options.type = "DELETE";
+            options.dataType = "html";
+            options.success = function (msg) {
+                console.log('msg= ' + msg);
+                $("#msg").html(msg);
+                getUserList();
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
+
+        // Handle exceptions from AJAX calls
+        function handleException(request, message, error) {
+            var msg = "";
+            msg += "Code: " + request.status + "\n";
+            msg += "Text: " + request.statusText + "\n";
+            if (request.responseJSON != null) {
+                msg += "Message" + request.responseJSON.Message + "\n";
+            }
+
+            alert(msg);
+        }
+
+    </script>
+}
+<form>
+    <table class="table" id="UserTable">
+        <thead>
+            <tr>
+                <td> آیدی </td>
+                <td> نام کاربری </td>
+                <td> نام </td>
+                <td> فامیلی </td>
+                <td> کشور </td>
+                <td> استان </td>
+                <td> شهر </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="username" type="text" /></td>
+                <td><input id="name" type="text" /></td>
+                <td><input id="family" type="text" /></td>
+                <td><input id="country" type="text" /></td>
+                <td><input id="state" type="text" /></td>
+                <td><input id="city" type="text" /></td>
+                <td><input type="button" class="btn btn-info" id="Insert" value="افزودن" onclick='onAddUser(this)' /></td>
+</thead>
+    </table>
+    <br />
+
+    <div id="msg"></div>
+</form>

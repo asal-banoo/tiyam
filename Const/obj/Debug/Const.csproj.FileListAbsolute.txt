@@ -1,0 +1,6 @@
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\bin\Debug\Const.dll
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\bin\Debug\Const.pdb
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\obj\Debug\Const.csprojAssemblyReference.cache
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\obj\Debug\Const.csproj.CoreCompileInputs.cache
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\obj\Debug\Const.dll
+C:\Users\Mohamad Pc\Source\Repos\TyamTest\Const\obj\Debug\Const.pdb

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewBag.Title + " | تیام")</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/now-ui-kit.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/images/TyamLogo.png">
+    @RenderSection("Styles", false)
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body class="@ViewBag.BodyClass">
+    <nav id="top-nav" class="navbar navbar-toggleable-md bg-danger fixed-top navbar-transparent" color-on-scroll="1">
+        <div class="container">
+            <div class="navbar-translate">
+                <a href="/" class="navbar-brand">
+                    <span class="logo-wrapper" style="width:200px;background-color:transparent;right:100px"><img style="margin-top:5px" src="~/Content/images/TyamLogo.png" alt="tharaj" title="tharaj" /></span>
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="nav-item"><a class="nav-link" href="/Home/index"><p>صفحه اصلی</p></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/home/user"><i class="now-ui-icons users_single-02"></i><p>پروفایل کاربری</p></a></li>
+                    <li class="nav-item active">  <a class="nav-link" href="/test/products/index"><p>ارسال آگهی</p></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper body-content">
+        @RenderBody()
+    </div>
+    <footer class="footer" data-background-color="black">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a asp-controoller href="/">
+                            صفحه نخست
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/">
+                            Sorip
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy; @DateTime.Now.Year - تمامی حقوق برای شرکت فراسام تیام محفوظ است
+            </div>
+        </div>
+    </footer>
+
+    @RenderSection("Modal", false)
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/tether.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+    <script src="~/Scripts/now-ui-kit.custom.js"></script>
+    <script src="~/Scripts/jquery.nice-select.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
+    @RenderSection("UiScript", false)
+</body>
+</html>

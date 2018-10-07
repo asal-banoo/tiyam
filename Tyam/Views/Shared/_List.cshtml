@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Models.Product>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="col-md-4 col-lg-3 col-sm-6">
+            <div class="ad">
+                <a href="/test/products/details/@item.ID">
+                    <img src="@(item.Images.First()== null? "/content/images/default.jpg":item.Images.FirstOrDefault().FileName)" />
+                    <span class="show-ad btn btn-round btn-info btn-lg">مشاهده آگهی</span>
+                </a>
+                <div class="desc">
+                    <p class="title">
+                        @item.Title
+                    </p>
+                    <h6 class="percent text-center"><span>@item.Count</span></h6>
+                    <span class="text-muted">@item.Prices.Last().Price $</span>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>هنوز آگهی اضافه نشده است</p>
+}
